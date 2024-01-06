@@ -40,3 +40,7 @@
 
 # Keep wp-config on track.
 !wp-config.php
+
+# Node
+node_modules/
+build/

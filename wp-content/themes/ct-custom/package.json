@@ -1,0 +1,18 @@
+{
+    "name": "coalitiontest",
+    "main": "index.js",
+    "scripts": {
+        "build": "npm run minify-js && npm run minify-css",
+        "start": "wp-scripts start",
+        "minify-js": "uglifyjs build/index.js -o assets/min/ct-dev.min.js",
+        "minify-css": "cleancss build/index.css -o assets/min/ct-dev.min.css"
+    },
+    "dependencies": {
+        "@wordpress/scripts": "*"
+    },
+    "devDependencies": {
+        "clean-css-cli": "^5.6.2",
+        "uglify-js": "^3.17.4",
+        "webpack": "^5.88.2"
+    }
+}
