@@ -1,3 +1,33 @@
+@mixin desktop {
+	@media only screen and (min-width: 1024px) {
+		@content;
+	}
+}
+@mixin tablet {
+	@media only screen and (max-width: 1023px) {
+		@content;
+	}
+}
+@mixin mobile {
+	@media only screen and (max-width: 37.5em) {
+		@content;
+	}
+}
+@mixin responsivePadding {
+	@include desktop {
+		padding-right: 70px;
+		padding-left: 70px;
+	}
+	@include tablet {
+		padding-right: 50px;
+		padding-left: 50px;
+	}
+	@include mobile {
+		padding-right: 20px;
+		padding-left: 20px;
+	}
+}
+
 :root {
 	--ctd-orange: #ff6400;
 }
@@ -23,6 +53,12 @@
 		font-size: 30px;
 	}
 
+	p {
+		@include tablet {
+			text-align: justify;
+		}
+	}
+
 	#page {
 		width: 100%;
 		display: flex;
@@ -36,6 +72,7 @@
 
 	&__top-bar {
 		background: var(--ctd-orange);
+		@include responsivePadding;
 
 		&--inner {
 			width: 100%;
@@ -75,6 +112,12 @@
 		width: 100%;
 		background: #f9f9f9;
 		padding: 35px 0;
+		@include responsivePadding;
+
+		@include tablet {
+			padding-top: 15px;
+			padding-bottom: 15px;
+		}
 
 		&--inner {
 			display: flex;
@@ -87,15 +130,51 @@
 
 		.site-branding {
 			min-width: fit-content;
+
+			img {
+				object-fit: contain;
+
+				@include tablet {
+					width: 140px;
+				}
+
+				@include mobile {
+					width: 100px;
+				}
+			}
 		}
 
 		.main-navigation {
 			display: flex;
 			justify-content: flex-end;
+
+			@include tablet {
+				&.toggled {
+					#primary-menu {
+						opacity: 1;
+						visibility: visible;
+					}
+				}
+			}
 		}
 
 		#primary-menu {
 			display: flex;
+
+			@include tablet {
+				position: absolute;
+				left: 0;
+				top: 0;
+				background: #fff;
+				width: 100%;
+				height: 100dvh;
+				z-index: 1;
+				flex-direction: column;
+				padding: 150px 20px;
+				opacity: 0;
+				visibility: hidden;
+				transition: all .2s;
+			}
 
 			> li {
 				padding: 16px 12px;
@@ -129,23 +208,83 @@
 			}
 		}
 
+		.menu-toggle {
+			@include desktop {
+				display: none;
+			}
+
+			background-color: transparent;
+			border: none;
+			cursor: pointer;
+			display: flex;
+			padding: 0;
+			position: relative;
+			z-index: 2;
+
+			.line {
+				fill: none;
+				stroke: black;
+				stroke-width: 6;
+				transition: stroke-dasharray 600ms cubic-bezier(0.4, 0, 0.2, 1),
+				stroke-dashoffset 600ms cubic-bezier(0.4, 0, 0.2, 1);
+			}
+			.line1 {
+				stroke-dasharray: 60 207;
+				stroke-width: 6;
+			}
+			.line2 {
+				stroke-dasharray: 60 60;
+				stroke-width: 6;
+			}
+			.line3 {
+				stroke-dasharray: 60 207;
+				stroke-width: 6;
+			}
+			&[aria-expanded="true"] .line1 {
+				stroke-dasharray: 90 207;
+				stroke-dashoffset: -134;
+				stroke-width: 6;
+			}
+			&[aria-expanded="true"] .line2 {
+				stroke-dasharray: 1 60;
+				stroke-dashoffset: -30;
+				stroke-width: 6;
+			}
+			&[aria-expanded="true"] .line3 {
+				stroke-dasharray: 90 207;
+				stroke-dashoffset: -134;
+				stroke-width: 6;
+			}
+		}
+
 		a {
 			font-size: 16px;
 			text-decoration: none;
 			color: #000;
 			text-transform: uppercase;
 			position: relative;
+			display: block;
+			margin-bottom: -6px;
 		}
 	}
 
 	.site-content {
-		padding: 50px 0 0;
+		padding: 50px 0;
+		@include responsivePadding;
+		@include tablet {
+			padding-top: 30px;
+			padding-bottom: 30px;
+		}
 	}
 
 	&__breadcrumb {
 		margin-bottom: 40px;
 		font-size: 18px;
 		
+		@include tablet {
+			margin-bottom: 20px;
+		}
+
 		ul {
 			margin: 0;
 			display: flex;
@@ -189,9 +328,18 @@
 			display: flex;
 			gap: 50px;
 
+			@include mobile {
+				flex-direction: column-reverse;
+				gap: 20px;
+			}
+
 			> div {
 				flex-grow: 1;
 				width: 50%;
+
+				@include mobile {
+					width: 100%;
+				}
 			}
 
 			h2 {
@@ -214,6 +362,10 @@
 					gap: 16px;
 					margin-top: 0;
 					margin-bottom: 0;
+
+					@include tablet {
+						flex-direction: column;
+					}
 				}
 
 				br {
@@ -308,6 +460,7 @@
 		margin-top: auto;
 		padding: 10px 0;
 		text-align: center;
+		@include responsivePadding;
 
 		a {
 			text-decoration: underline;

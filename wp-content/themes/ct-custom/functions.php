@@ -147,8 +147,6 @@ function ct_custom_scripts() {
 	}
 
 	// Test enqueues. (Min on production).
-	// wp_enqueue_style( 'ct-dev', get_template_directory_uri() . '/build/index.css', '20240105' );
-	// wp_enqueue_script( 'ct-dev', get_template_directory_uri() . '/build/index.js', array( 'jquery' ), '20240105', true );
 	wp_enqueue_style( 'ct-dev', get_template_directory_uri() . '/assets/min/ct-dev.min.css', '20240105' );
 	wp_enqueue_script( 'ct-dev', get_template_directory_uri() . '/assets/min/ct-dev.min.js', array(), '20240105', true );
 	wp_enqueue_style( 'ct-dev-ubuntu', 'https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;700&display=swap' );
