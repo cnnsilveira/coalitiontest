@@ -3,18 +3,17 @@
  * Template name: Homepage
  */
 
-add_action( 'body_class', 'ctdev__body_class' );
-/**
- * Adds custom class to the body for reference.
- *
- * @param array $wp_classes WP body classes array.
- * @return array $wp_classes Modified classes array.
- */
-function ctdev__body_class( $wp_classes ) {
-	$wp_classes[] = 'ctd';
+$address_title  = ! empty( get_option( 'ctdev__address_1' ) ) ? get_option( 'ctdev__address_1' ) : 'Coalition Skills Test';
+$address_line_1 = ! empty( get_option( 'ctdev__address_2' ) ) ? get_option( 'ctdev__address_2' ) : '535 La Plata Street';
+$address_line_2 = ! empty( get_option( 'ctdev__address_3' ) ) ? get_option( 'ctdev__address_3' ) : '4200 Argentina';
+$phone_number   = ! empty( get_option( 'ctdev__phone_number' ) ) ? get_option( 'ctdev__phone_number' ) : '385.154.11.28.38';
+$fax_number     = ! empty( get_option( 'ctdev__fax' ) ) ? get_option( 'ctdev__fax' ) : '385.154.35.66.78';
 
-	return $wp_classes;
-}
+
+$social_facebook  = ! empty( get_option( 'ctdev__social_facebook' ) ) ? get_option( 'ctdev__social_facebook' ) : '#';
+$social_twitter   = ! empty( get_option( 'ctdev__social_twitter' ) ) ? get_option( 'ctdev__social_twitter' ) : '#';
+$social_linkedin  = ! empty( get_option( 'ctdev__social_linkedin' ) ) ? get_option( 'ctdev__social_linkedin' ) : '#';
+$social_pinterest = ! empty( get_option( 'ctdev__social_pinterest' ) ) ? get_option( 'ctdev__social_pinterest' ) : '#';
 
 get_header();
 
@@ -101,21 +100,21 @@ echo '
 					<div class="reach-content">
 
 						<div class="location">
-							<p class="location--title">Coalition Skills Test</p>
-							<p class="location--line-1">La Plata Street</p>
-							<p class="location--line-2">Argentina</p>
+							<p class="location--title">' . esc_html( $address_title ) . '</p>
+							<p class="location--line-1">' . esc_html( $address_line_1 ) . '</p>
+							<p class="location--line-2">' . esc_html( $address_line_2 ) . '</p>
 						</div><!-- .location -->
 
 						<div class="contact">
-							<p class="contact--phone">Phone: 289382</p>
-							<p class="contact--fax">Fax: 392932</p>
+							<p class="contact--phone">Phone: ' . esc_html( $phone_number ) . '</p>
+							<p class="contact--fax">Fax: ' . esc_html( $fax_number ) . '</p>
 						</div><!-- .contact -->
 
 						<div class="social">
-							<a title="Facebook" href="#" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
-							<a title="Twitter" href="#" target="_blank"><i class="fa-brands fa-twitter"></i></a>
-							<a title="Linkedin" href="#" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
-							<a title="Pinterest" href="#" target="_blank"><i class="fa-brands fa-pinterest-p"></i></a>
+							<a title="Facebook" href="' . esc_url( $social_facebook ) . '" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+							<a title="Twitter" href="' . esc_url( $social_twitter ) . '" target="_blank"><i class="fa-brands fa-twitter"></i></a>
+							<a title="Linkedin" href="' . esc_url( $social_linkedin ) . '" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
+							<a title="Pinterest" href="' . esc_url( $social_pinterest ) . '" target="_blank"><i class="fa-brands fa-pinterest-p"></i></a>
 						</div><!-- .social -->
 
 					</div><!-- .reach-content -->

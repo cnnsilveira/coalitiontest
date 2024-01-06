@@ -27,7 +27,7 @@
 	<div class="ctd__top-bar">
 		<div class="ctd__top-bar--inner">
 			<div class="left">
-				<p><?php esc_html_e( 'Call us now!', 'ct-custom' ); ?><span>329.320.23.23.32</span></p>
+				<p><?php esc_html_e( 'Call us now!', 'ct-custom' ); ?><span><?php echo esc_html( get_option( 'ctdev__phone_number' ) ); ?></span></p>
 			</div><!-- .left-->
 			<div class="right">
 				<a title="Login" href="<?php echo esc_url( wp_login_url() ); ?>">Login</a>
@@ -40,7 +40,9 @@
 		<div class="site-header--inner">
 			<div class="site-branding">
 				<?php
-				the_custom_logo();
+				$header_logo = ! empty( get_option( 'ctdev__header_logo' ) ) ? get_option( 'ctdev__header_logo' ) : get_template_directory_uri() . '/assets/img/default-logo.png';
+				echo '<a href="' . esc_url( home_url() ) . '"><img src="' . esc_url( $header_logo ) . '" alt="' . esc_html( get_bloginfo( 'name' ) ) . '" width="173" height="38"></a>';
+				// the_custom_logo();
 				if ( is_front_page() && is_home() ) :
 					?>
 					<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
