@@ -376,7 +376,7 @@
 					font-family: 'Ubuntu', sans-serif;
 				}
 
-				span, input:not([type="submit"]), textarea {
+				span:not(.wpcf7-spinner), input:not([type="submit"]), textarea {
 					width: 100%;
 				}
 
@@ -408,6 +408,7 @@
 					text-transform: uppercase;
 					border-radius: 0;
 					font-weight: bold;
+					cursor: pointer;
 				}
 			}
 		}
