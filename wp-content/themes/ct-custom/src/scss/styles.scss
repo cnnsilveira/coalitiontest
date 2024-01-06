@@ -39,6 +39,12 @@
 	font-size: 18px;
 	color: #878787;
 
+	@include tablet {
+		&:has(.main-navigation.toggled) {
+			overflow: hidden;
+		}
+	}
+
 	h1, h2, h3, h4, h5 {
 		font-family: 'Open Sans', sans-serif;
 		color: var(--ctd-orange);
@@ -71,6 +77,8 @@
 	}
 
 	&__top-bar {
+		position: relative;
+		z-index: 2;
 		background: var(--ctd-orange);
 		@include responsivePadding;
 
@@ -130,6 +138,8 @@
 
 		.site-branding {
 			min-width: fit-content;
+			position: relative;
+			z-index: 2;
 
 			img {
 				object-fit: contain;
@@ -167,7 +177,7 @@
 				top: 0;
 				background: #fff;
 				width: 100%;
-				height: 100dvh;
+				height: 100%;
 				z-index: 1;
 				flex-direction: column;
 				padding: 150px 20px;
